@@ -14,6 +14,7 @@ import {
   onboardingSchema,
   OnboardingFormData,
 } from "../utils/validationSchemas";
+import { sendOnboardingEmails } from "../services/emailService";
 
 const OnboardingContainer = styled.div`
   min-height: 100vh;
@@ -216,12 +217,21 @@ const OnboardingPortal: React.FC = () => {
         setIsSubmitting(true);
         setSubmitError(null);
 
-        localStorage.removeItem("onboarding-form-data");
-
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-
         console.log("Form submitted:", values);
 
+        // Send emails to admin and customer
+        try {
+          await sendOnboardingEmails(values);
+          console.log("Emails sent successfully");
+        } catch (emailError) {
+          console.error("Email sending failed:", emailError);
+          // Continue with the flow even if emails fail
+        }
+
+        // Clear localStorage after successful submission
+        localStorage.removeItem("onboarding-form-data");
+
+        // Redirect to Calendly
         const calendlyUrl =
           import.meta.env.VITE_CALENDLY_URL || "https://calendly.com";
         window.location.href = calendlyUrl;
