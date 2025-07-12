@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting...</title>
+    <script type="text/javascript">
+      // GitHub Pages redirect hack
+      var pathSegments = location.pathname
+        .split("/")
+        .filter(function (segment) {
+          return segment !== "";
+        });
+      location.replace(
+        location.protocol +
+          "//" +
+          location.hostname +
+          location.port +
+          "/" +
+          (pathSegments.length ? "?p=/" + pathSegments.join("/") : ""),
+      );
+    </script>
+  </head>
+  <body></body>
+</html>
