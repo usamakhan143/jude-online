@@ -1,36 +1,15 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { Container, Section } from "../ui/Container";
 
 const StyledBenefitsSection = styled(Section)`
-  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   position: relative;
   overflow: hidden;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-      radial-gradient(
-        circle at 20% 30%,
-        rgba(16, 185, 129, 0.1) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 80% 70%,
-        rgba(99, 102, 241, 0.08) 0%,
-        transparent 50%
-      );
-    pointer-events: none;
-  }
 `;
 
 const BenefitsContainer = styled.div`
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   text-align: center;
   position: relative;
@@ -40,13 +19,14 @@ const BenefitsContainer = styled.div`
 const SectionTitle = styled.h2`
   font-size: 3rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #0f172a 0%, #475569 100%);
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 3rem;
   line-height: 1.2;
   position: relative;
+  text-align: center;
 
   &::after {
     content: "";
@@ -69,39 +49,61 @@ const SectionTitle = styled.h2`
   }
 `;
 
-const BenefitsList = styled.ul`
-  list-style: none;
-  margin: 4rem 0;
-  text-align: left;
+const IntroText = styled.div`
+  text-align: center;
+  margin-bottom: 4rem;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: #e2e8f0;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+const BenefitsGrid = styled.div`
   display: grid;
   gap: 2rem;
+  margin-top: 3rem;
 
   @media (min-width: 768px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+`;
+
+const BottomCardsContainer = styled.div`
+  display: grid;
+  gap: 2rem;
+  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
     gap: 2.5rem;
   }
 `;
 
-const BenefitItem = styled.li`
-  display: flex;
-  align-items: flex-start;
-  padding: 2.5rem;
-  font-size: 1.1rem;
-  line-height: 1.7;
-  background: rgba(255, 255, 255, 0.9);
-
-  border-radius: 24px;
+const BenefitCard = styled.div`
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(16, 185, 129, 0.2);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-
-  transition: all 0.2s ease;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
 
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15);
-    border-color: rgba(16, 185, 129, 0.3);
+    transform: translateY(-5px);
+    border-color: rgba(16, 185, 129, 0.4);
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
   }
 
   &::before {
@@ -109,115 +111,56 @@ const BenefitItem = styled.li`
     position: absolute;
     top: 0;
     left: 0;
-    width: 5px;
-    height: 100%;
+    width: 100%;
+    height: 4px;
     background: linear-gradient(135deg, #10b981, #059669);
-    border-radius: 0 3px 3px 0;
-  }
-
-  &::after {
-    content: "✅";
-    margin-right: 1.2rem;
-    flex-shrink: 0;
-    margin-top: 3px;
-    font-size: 1.3rem;
-    filter: drop-shadow(0 2px 8px rgba(16, 185, 129, 0.4));
-    animation: pulse 2s ease-in-out infinite;
   }
 `;
 
-const BenefitText = styled.div`
-  strong {
-    color: #0f172a;
-    font-weight: 700;
-    background: linear-gradient(135deg, #10b981, #059669);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  color: #475569;
-  font-weight: 500;
-`;
-
-const ValueProposition = styled.div`
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: white;
-  padding: 3.5rem;
-  border-radius: 28px;
-  margin-top: 4rem;
-  box-shadow:
-    0 25px 50px rgba(16, 185, 129, 0.3),
-    0 0 100px rgba(16, 185, 129, 0.2);
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-      radial-gradient(
-        circle at 30% 30%,
-        rgba(255, 255, 255, 0.2) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 70% 70%,
-        rgba(255, 255, 255, 0.1) 0%,
-        transparent 50%
-      );
-    pointer-events: none;
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-      45deg,
-      transparent 49%,
-      rgba(255, 255, 255, 0.1) 50%,
-      transparent 51%
-    );
-    animation: shimmer 4s ease-in-out infinite;
-    pointer-events: none;
-  }
-`;
-
-const ValueTitle = styled.h3`
-  font-size: 2.2rem;
-  font-weight: 700;
+const BenefitIcon = styled.div`
+  font-size: 3rem;
   margin-bottom: 1.5rem;
-  text-align: center;
-  position: relative;
-  z-index: 2;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  color: #10b981;
+`;
 
-  @media (max-width: 640px) {
-    font-size: 1.7rem;
+const BenefitTitle = styled.h3`
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 1rem;
+`;
+
+const BenefitText = styled.p`
+  color: #e2e8f0;
+  line-height: 1.6;
+  font-size: 1rem;
+`;
+
+const ImageSection = styled.div`
+  margin: 4rem 0;
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
   }
 `;
 
-const ValueText = styled.p`
-  font-size: 1.2rem;
-  line-height: 1.7;
-  text-align: center;
-  opacity: 0.95;
-  position: relative;
-  z-index: 2;
-  font-weight: 500;
-  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+const SuccessImage = styled.img`
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+`;
 
-  @media (max-width: 640px) {
-    font-size: 1.1rem;
-  }
+const SuccessContent = styled.div`
+  text-align: left;
+  color: #e2e8f0;
+  font-size: 1.1rem;
+  line-height: 1.7;
 `;
 
 export const BenefitsSection: React.FC = () => {
@@ -227,58 +170,98 @@ export const BenefitsSection: React.FC = () => {
         <BenefitsContainer>
           <SectionTitle>What You Get When You Grab Your Blueprint</SectionTitle>
 
-          <BenefitsList>
-            <BenefitItem>
-              <BenefitText>
-                <strong>Crystal Clear Business Strategy:</strong> Know exactly
-                what business model to pursue and why it's the fastest path to
-                your first £1k (and beyond)
-              </BenefitText>
-            </BenefitItem>
+          <IntroText>
+            <p
+              style={{
+                marginBottom: "1.5rem",
+                fontSize: "1.3rem",
+                fontWeight: "600",
+              }}
+            >
+              More than anything, you get ultimate clarity.
+            </p>
+            <p>
+              No more guessing. No more wondering if you're wasting your time.
+              No more feeling like you're running in circles while everyone else
+              passes you by.
+            </p>
+          </IntroText>
 
-            <BenefitItem>
+          <BenefitsGrid>
+            <BenefitCard>
+              <BenefitIcon>🎯</BenefitIcon>
+              <BenefitTitle>Certainty About Your Business Model</BenefitTitle>
               <BenefitText>
-                <strong>Step-by-Step Action Plan:</strong> Get a week-by-week
-                roadmap that eliminates guesswork and keeps you focused on
-                revenue-generating activities
+                You'll know exactly what business makes sense for you—one you
+                can actually stick with and grow profitably.
               </BenefitText>
-            </BenefitItem>
+            </BenefitCard>
 
-            <BenefitItem>
+            <BenefitCard>
+              <BenefitIcon>📋</BenefitIcon>
+              <BenefitTitle>A Step-By-Step Roadmap</BenefitTitle>
               <BenefitText>
-                <strong>Pricing & Positioning Framework:</strong> Learn how to
-                price your services confidently and position yourself as the
-                obvious choice for your ideal clients
+                No fluff, no jargon. Just clear, simple steps you can follow to
+                launch and start making your first £1k/month.
               </BenefitText>
-            </BenefitItem>
+            </BenefitCard>
 
-            <BenefitItem>
+            <BenefitCard>
+              <BenefitIcon>💪</BenefitIcon>
+              <BenefitTitle>Confidence in Every Move</BenefitTitle>
               <BenefitText>
-                <strong>Sales System That Converts:</strong> Master the art of
-                selling without being pushy, using proven scripts and frameworks
-                that close deals consistently
+                When you have a proven plan, taking action feels easier and you
+                stop second-guessing every decision.
               </BenefitText>
-            </BenefitItem>
+            </BenefitCard>
+          </BenefitsGrid>
 
-            <BenefitItem>
+          <BottomCardsContainer>
+            <BenefitCard>
+              <BenefitIcon>🚀</BenefitIcon>
+              <BenefitTitle>Faster Progress & Real Results</BenefitTitle>
               <BenefitText>
-                <strong>Mistake-Proof Implementation:</strong> Avoid the costly
-                errors that derail most new businesses with our comprehensive
-                troubleshooting guide
+                Instead of wasting years, you'll move forward with purpose and
+                start generating revenue as fast as possible.
               </BenefitText>
-            </BenefitItem>
-          </BenefitsList>
+            </BenefitCard>
 
-          <ValueProposition>
-            <ValueTitle>
-              Finally Get The Clarity You've Been Searching For
-            </ValueTitle>
-            <ValueText>
-              Stop second-guessing yourself. Stop jumping from strategy to
-              strategy. This blueprint gives you everything you need to build a
-              profitable business with confidence and clarity.
-            </ValueText>
-          </ValueProposition>
+            <BenefitCard>
+              <BenefitIcon>🗂️</BenefitIcon>
+              <BenefitTitle>The Freedom You've Been Looking For</BenefitTitle>
+              <BenefitText>
+                You'll finally feel like you're on the right track—building
+                something that matters and creates real income.
+              </BenefitText>
+            </BenefitCard>
+          </BottomCardsContainer>
+
+          <ImageSection>
+            <SuccessImage
+              src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="Successful entrepreneur celebrating growth"
+            />
+            <SuccessContent>
+              <h3
+                style={{
+                  color: "#10b981",
+                  fontSize: "1.5rem",
+                  marginBottom: "1rem",
+                  fontWeight: "700",
+                }}
+              >
+                Transform Your Business Journey
+              </h3>
+              <p style={{ marginBottom: "1rem" }}>
+                Stop spinning your wheels and start building a business that
+                actually works. This blueprint has helped hundreds of
+                entrepreneurs break through the £1k barrier and beyond.
+              </p>
+              <p style={{ color: "#10b981", fontWeight: "600" }}>
+                Your success story starts here.
+              </p>
+            </SuccessContent>
+          </ImageSection>
         </BenefitsContainer>
       </Container>
     </StyledBenefitsSection>

@@ -3,7 +3,7 @@ import styled, { keyframes } from "styled-components";
 import { Container, Section } from "../ui/Container";
 
 const StyledTestimonialSection = styled(Section)`
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
   position: relative;
   overflow: hidden;
 
@@ -16,13 +16,13 @@ const StyledTestimonialSection = styled(Section)`
     bottom: 0;
     background:
       radial-gradient(
-        circle at 70% 30%,
-        rgba(236, 72, 153, 0.08) 0%,
+        circle at 30% 50%,
+        rgba(168, 85, 247, 0.1) 0%,
         transparent 50%
       ),
       radial-gradient(
-        circle at 30% 70%,
-        rgba(99, 102, 241, 0.05) 0%,
+        circle at 70% 50%,
+        rgba(236, 72, 153, 0.1) 0%,
         transparent 50%
       );
     pointer-events: none;
@@ -49,20 +49,18 @@ const VideoTestimonial = styled.div`
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 24px;
   overflow: hidden;
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.1),
-    0 0 80px rgba(236, 72, 153, 0.2);
-
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(168, 85, 247, 0.3);
 
   transition: all 0.2s ease;
 
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    border-color: rgba(168, 85, 247, 0.5);
   }
 
   &::before {
@@ -103,7 +101,7 @@ const TestimonialContent = styled.div`
 const Quote = styled.blockquote`
   font-size: 1.8rem;
   font-weight: 600;
-  color: #0f172a;
+  color: #ffffff;
   line-height: 1.4;
   margin-bottom: 2.5rem;
   position: relative;
@@ -170,16 +168,13 @@ const CustomerDetails = styled.div``;
 const CustomerName = styled.div`
   font-size: 1.3rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #0f172a, #475569);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #ffffff;
   margin-bottom: 0.25rem;
 `;
 
 const CustomerTitle = styled.div`
   font-size: 1rem;
-  color: #64748b;
+  color: #cccccc;
   font-weight: 500;
 `;
 

@@ -57,7 +57,6 @@ const HeaderContent = styled.div`
   margin: 0 auto;
   position: relative;
   z-index: 2;
-  animation: fadeInUp 0.3s ease-out;
 `;
 
 const Headline = styled.h1`
@@ -114,31 +113,13 @@ const VideoContainer = styled.div`
   box-shadow:
     0 25px 50px -12px rgba(0, 0, 0, 0.25),
     0 0 80px rgba(99, 102, 241, 0.3);
-  animation: fadeInScale 0.3s ease-out;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
 
   &:hover {
-    transform: translateY(-10px) scale(1.02);
+    transform: translateY(-5px);
     box-shadow:
-      0 35px 70px -12px rgba(0, 0, 0, 0.35),
-      0 0 120px rgba(99, 102, 241, 0.5);
-  }
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-      45deg,
-      transparent 49%,
-      rgba(255, 255, 255, 0.1) 50%,
-      transparent 51%
-    );
-    animation: shimmer 3s ease-in-out infinite;
-    pointer-events: none;
+      0 20px 40px -12px rgba(0, 0, 0, 0.25),
+      0 0 60px rgba(99, 102, 241, 0.3);
   }
 `;
 
@@ -151,7 +132,6 @@ const VideoIframe = styled.iframe`
 
 const CTAContainer = styled.div`
   margin-top: 4rem;
-  animation: fadeInUp 0.3s ease-out;
 `;
 
 const CTAText = styled.p`
@@ -184,24 +164,21 @@ const FloatingElements = styled.div`
     content: "";
     position: absolute;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    animation: float 6s ease-in-out infinite;
+    background: rgba(255, 255, 255, 0.05);
   }
 
   &::before {
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     top: 10%;
-    left: -100px;
-    animation-delay: 0s;
+    left: -50px;
   }
 
   &::after {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     bottom: 10%;
-    right: -50px;
-    animation-delay: 3s;
+    right: -25px;
   }
 `;
 
@@ -226,8 +203,8 @@ export const Header: React.FC = () => {
       <Container>
         <HeaderContent>
           <Headline>
-            Stop Making the Business Mistakes That Are Stopping You From Hitting
-            Your First £1k
+            Don't Make the Costly Mistake of Building the Wrong Business From
+            Day One
           </Headline>
 
           <VideoContainer>
@@ -241,8 +218,10 @@ export const Header: React.FC = () => {
 
           <CTAContainer>
             <CTAText>
-              Get instant access to the blueprint that's helped hundreds break
-              through the £1k barrier
+              Discover the step-by-step plan to launch the right business and
+              start earning your first £1k/month. Perfect if you're a beginner
+              who feels lost, stuck, or unsure whether your current business
+              model is right or what to do next.
             </CTAText>
             <Button
               size="lg"
